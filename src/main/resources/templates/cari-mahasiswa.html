@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:replace="fragments/fragment :: header"></div>
+<body>
+<div class="col-md-12">
+    <h4>Cari Mahasiswa</h4>
+    <form action="/mahasiswa/cari/submit" method="get">
+        <div class="form-group col-md-5">
+            <label>Universitas</label>
+            <select class="form-control form-control-sm" name="id_univ" id="id_univ" required>
+                <option value="">- Select universitas -</option>
+                <option th:each="univ : ${univs}"
+                        th:value="${univ.id}"
+                        th:utext="${univ.nama_univ}"/>
+            </select>
+        </div>
+        <div class="form-group col-md-5">
+            <label>Fakultas</label>
+            <select class="form-control form-control-sm" name="id_fakultas" id="id_fakultas" required>
+                <option value="">- Select fakultas -</option>
+                <option th:each="fakultas : ${listFakultas}"
+                        th:value="${fakultas.id}"
+                        th:utext="${fakultas.nama_fakultas}" th:class="${fakultas.univ.id}"/>
+            </select>
+        </div>
+        <div class="form-group col-md-5">
+            <label>Program Studi</label>
+            <select class="form-control form-control-sm" name="id_prodi" id="id_prodi" required>
+                <option value="">- Select prodi -</option>
+                <option th:each="prodi : ${prodis}"
+                        th:value="${prodi.id}"
+                        th:utext="${prodi.nama_prodi}" th:class="${prodi.fakultas.id}"/>
+            </select>
+        </div>
+        <div class="form-group col-md-5">
+            <input type="submit" class="btn btn-success btn-sm" value="Cari">
+        </div>
+    </form>
+</div>
+
+
+</body>
+<script>
+    $("#id_fakultas").chained("#id_univ");
+    $("#id_prodi").chained("#id_fakultas");
+</script>
+<div th:replace="fragments/fragment :: footer"></div>
+</html>

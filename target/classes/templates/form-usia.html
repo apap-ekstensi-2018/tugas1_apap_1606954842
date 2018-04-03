@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:replace="fragments/fragment :: header"></div>
+<body>
+<div class="col-md-12">
+    <h4>Usia Mahasiswa</h4>
+    <form action="/usia" method="get">
+        <div class="form-group col-md-5">
+            <label>Tahun</label>
+            <input type="number" class="form-control form-control-sm" name="tahun" placeholder="Tahun" required>
+        </div>
+        <div class="form-group col-md-5">
+            <label>Program Studi</label>
+            <select class="form-control form-control-sm" name="id_prodi" required>
+                <option value="">- Select prodi -</option>
+                <option th:each="prodi : ${prodis}"
+                        th:value="${prodi.id}"
+                        th:utext="${prodi.nama_prodi}"/>
+            </select>
+        </div>
+        <div class="form-group col-md-5">
+            <input type="submit" class="btn btn-success btn-sm" value="Lihat">
+        </div>
+    </form>
+</div>
+
+
+</body>
+<div th:replace="fragments/fragment :: footer"></div>
+</html>

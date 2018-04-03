@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<div th:replace="fragments/fragment :: header"></div>
+<link rel="stylesheet" href="/css/jquery.dataTables.min.css">
+<script type="text/javascript" charset="utf8" src="/js/jquery.dataTables.min.js"></script>
+<body>
+<div class="col-md-12">
+    <p th:text="'Lihat data mahasiswa Program Studi ' + ${sampleMahasiswa.prodi.nama_prodi} + ' Fakultas ' + ${sampleMahasiswa.prodi.fakultas.nama_fakultas} +' '+ ${sampleMahasiswa.prodi.fakultas.univ.nama_univ}"></p>
+    <table id="tableMahasiswa" class="row-border hover stripe">
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>NPM</th>
+                <th>Nama</th>
+                <th>Program Studi</th>
+                <th>Tahun Masuk</th>
+                <th>Jalur Masuk</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="mahasiswa, iterationStatus: ${listMahasiswa}">
+                <td th:text="${iterationStatus.count}"></td>
+                <td th:text="${mahasiswa.npm}"></td>
+                <td th:text="${mahasiswa.nama}"></td>
+                <td th:text="${mahasiswa.prodi.nama_prodi}"></td>
+                <td th:text="${mahasiswa.tahun_masuk}"></td>
+                <td th:text="${mahasiswa.jalur_masuk}"></td>
+                <td>
+                    <a th:href="'/mahasiswa?npm='+${mahasiswa.npm}"><input type="button" class="btn btn-sm btn-info" value="Detail"></a>
+                    <a th:href="'/mahasiswa/ubah/'+${mahasiswa.npm}"><input type="button" class="btn btn-sm btn-primary" value="Ubah"></a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+<script>
+    var table = $('#tableMahasiswa').DataTable();
+</script>
+<div th:replace="fragments/fragment :: footer"></div>
+</html>

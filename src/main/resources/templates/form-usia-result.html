@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:replace="fragments/fragment :: header"></div>
+<style>
+    .borderless td, .borderless th {
+        border: none;
+    }
+</style>
+<body>
+<div class="col-md-12">
+    <h4 th:text="'Usia mahasiswa tahun '+ ${mahasiswaMuda.tahun_masuk} + ' program studi ' + ${mahasiswaMuda.prodi.nama_prodi}"></h4>
+    <div class="col-md-6" style="float: left;">
+        <table class="table borderless">
+            <tr>
+                <th>Mahasiswa paling muda</th>
+            </tr>
+            <tr>
+                <th>Nama</th>
+                <td th:text="${mahasiswaMuda.nama}"></td>
+            </tr>
+            <tr>
+                <th>Tanggal lahir</th>
+                <td th:text="${mahasiswaMuda.tanggal_lahir}"></td>
+            </tr>
+            <tr>
+                <th>NPM</th>
+                <td th:text="${mahasiswaMuda.npm}"></td>
+            </tr>
+            <tr>
+                <td></td>
+            </tr>
+            <tr>
+                <th>Mahasiswa paling tua</th>
+            </tr>
+            <tr>
+                <th>Nama</th>
+                <td th:text="${mahasiswaTua.nama}"></td>
+            </tr>
+            <tr>
+                <th>Tanggal lahir</th>
+                <td th:text="${mahasiswaTua.tanggal_lahir}"></td>
+            </tr>
+            <tr>
+                <th>NPM</th>
+                <td th:text="${mahasiswaTua.npm}"></td>
+            </tr>
+        </table>
+    </div>
+</div>
+</body>
+<div th:replace="fragments/fragment :: footer"></div>
+</html>
